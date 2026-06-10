@@ -1,0 +1,45 @@
+<!--定义Mapper映射文件的约束和基本结构-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itmy.mapper.GameMapper">
+    <insert id="insert">
+        insert into game (user_id, game_name, game_year, game_type, game_size, game_price, game_description, game_cover, game_download_link, game_extract_code, create_user, update_user, create_time, update_time) values
+        (#{userId}, #{gameName}, #{gameYear}, #{gameType}, #{gameSize}, #{gamePrice}, #{gameDescription}, #{gameCover}, #{gameDownloadLink}, #{gameExtractCode}, #{createUser}, #{updateUser}, #{createTime}, #{updateTime})
+    </insert>
+
+    <select id="list" resultType="com.itmy.pojo.vo.GameVo">
+        select id, game_name, game_year, game_type, game_size, game_price, game_description, game_cover, game_download_link, game_extract_code from game
+        <where>
+            <if test="gameName != null and gameName != ''">
+                game_name like concat('%', #{gameName}, '%')
+            </if>
+            <if test="beginYear != null">
+                and game_year >= #{beginYear}
+            </if>
+            <if test="endYear != null">
+                and game_year &lt;= #{endYear}
+            </if>
+            <if test="gameType != null">
+                and game_type = #{gameType}
+            </if>
+            <if test="gameSize != null">
+                <if test="gameSize == 1">
+                    and game_size &lt; 5
+                </if>
+                <if test="gameSize == 2">
+                    and game_size >= 5 and game_size &lt; 10
+                </if>
+                <if test="gameSize == 3">
+                    and game_size >= 10 and game_size &lt;= 20
+                </if>
+                <if test="gameSize == 4">
+                    and game_size >= 20 and game_size &lt; 50
+                </if>
+                <if test="gameSize == 5">
+                    and game_size >= 50
+                </if>
+            </if>
+        </where>
+    </select>
+</mapper>

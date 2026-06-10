@@ -28,6 +28,13 @@
     </scm>
     <properties>
         <java.version>17</java.version>
+        <jwt.version>0.9.1</jwt.version>
+        <jaxbapi.version>2.3.1</jaxbapi.version>
+        <jaxbruntime.version>2.3.8</jaxbruntime.version>
+        <mybatis.version>3.5.19</mybatis.version>
+        <aliyun.oss.version>3.17.4</aliyun.oss.version>
+        <!--分页插件PageHelper-->
+        <pagehelper.version>1.4.7</pagehelper.version>
     </properties>
     <dependencies>
         <dependency>
@@ -60,6 +67,43 @@
             <artifactId>mybatis-spring-boot-starter-test</artifactId>
             <version>4.0.1</version>
             <scope>test</scope>
+        </dependency>
+        <!--JWT-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jwt.version}</version>
+        </dependency>
+        <!-- JAXB API -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${jaxbapi.version}</version>
+        </dependency>
+        <!-- JAXB Runtime -->
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>${jaxbruntime.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!--阿里云OSS依赖-->
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>${aliyun.oss.version}</version>
+        </dependency>
+
+        <!--分页插件PageHelper-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${pagehelper.version}</version>
         </dependency>
     </dependencies>
 

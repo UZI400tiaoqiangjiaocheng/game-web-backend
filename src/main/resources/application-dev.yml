@@ -1,0 +1,19 @@
+sky:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: localhost
+    port: 3306
+    database: game_web
+    username: root
+    password: 15386675194lh
+  redis:
+    host: localhost
+    port: 6379
+    password: 15386675194lh
+    database: 10
+
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    bucketName: java-lh-ai
+    region: cn-beijing
