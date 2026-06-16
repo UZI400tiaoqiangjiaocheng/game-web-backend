@@ -10,4 +10,12 @@
             #{id}
         </foreach>
     </delete>
+    <!--将游戏添加到游戏仓库中-->
+    <insert id="insertGame">
+        INSERT INTO gamewarehouse (user_id, game_id, create_time)
+        VALUES
+        <foreach collection="gameWarehouseList" item="gameWarehouse" separator=",">
+            (#{gameWarehouse.userId}, #{gameWarehouse.gameId}, #{gameWarehouse.createTime})
+        </foreach>
+    </insert>
 </mapper>

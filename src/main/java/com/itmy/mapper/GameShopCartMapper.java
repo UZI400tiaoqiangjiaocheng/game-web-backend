@@ -1,6 +1,7 @@
 package com.itmy.mapper;
 
 import com.itmy.pojo.entity.GameShopCart;
+import com.itmy.pojo.entity.GameWarehouse;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -19,4 +20,7 @@ public interface GameShopCartMapper {
 
     //根据id删除购物车中的游戏
     void deleteBatchIds(List<Integer> ids);
+
+    //将游戏添加到游戏仓库中
+    void insertGame(List<GameWarehouse> gameWarehouseList);
 }

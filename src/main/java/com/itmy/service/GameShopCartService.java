@@ -14,4 +14,7 @@ public interface GameShopCartService {
 
     //删除购物车中的游戏
     void deleteShopCart(Integer[] ids);
+
+    //将购买的游戏加入游戏库
+    void addGame(Integer[] ids);
 }

@@ -35,6 +35,8 @@
         <aliyun.oss.version>3.17.4</aliyun.oss.version>
         <!--分页插件PageHelper-->
         <pagehelper.version>1.4.7</pagehelper.version>
+        <!--支付宝支付依赖-->
+        <alipay.version>2.2.3</alipay.version>
     </properties>
     <dependencies>
         <dependency>
@@ -104,6 +106,30 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>${pagehelper.version}</version>
+        </dependency>
+
+        <!--支付宝支付依赖-->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-easysdk</artifactId>
+            <version>${alipay.version}</version>
+        </dependency>
+        <!--解析json依赖-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.83</version> <!-- 建议使用较新版本以修复安全漏洞 -->
+        </dependency>
+        <!--Hutool依赖依赖-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.13</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.5.1</version> <!-- 建议使用 3.5.1 或与你项目兼容的版本 -->
         </dependency>
     </dependencies>
 

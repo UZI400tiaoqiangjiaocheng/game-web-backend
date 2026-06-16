@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService {
             LoginRequest loginRequest = new LoginRequest();
             loginRequest.setId(user.getId());
             loginRequest.setAccount(user.getAccount());
+            loginRequest.setUsername(user.getUsername());
             loginRequest.setPassword(user.getPassword());
             loginRequest.setToken(JwtToken);
             return loginRequest;

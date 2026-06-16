@@ -2,6 +2,7 @@ package com.itmy.service.impl;
 
 import com.itmy.mapper.GameShopCartMapper;
 import com.itmy.pojo.entity.GameShopCart;
+import com.itmy.pojo.entity.GameWarehouse;
 import com.itmy.pojo.vo.GameVo;
 import com.itmy.service.GameShopCartService;
 import com.itmy.utils.CurrentHolder;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -47,5 +49,19 @@ public class GameShopCartServiceImpl implements GameShopCartService {
     public void deleteShopCart(Integer[] ids) {
         //根据id删除购物车中的游戏
         gameShopCartMapper.deleteBatchIds(List.of(ids));
+    }
+
+    //将游戏添加到游戏仓库中
+    @Override
+    public void addGame(Integer[] ids) {
+        List<GameWarehouse> gameWarehouseList = new ArrayList<>();
+        for (Integer id : ids) {
+            GameWarehouse gameWarehouse = new GameWarehouse();
+            gameWarehouse.setUserId(CurrentHolder.getCurrentId());
+            gameWarehouse.setGameId(id);
+            gameWarehouse.setCreateTime(LocalDateTime.now());
+            gameWarehouseList.add(gameWarehouse);
+        }
+        gameShopCartMapper.insertGame(gameWarehouseList);
     }
 }
