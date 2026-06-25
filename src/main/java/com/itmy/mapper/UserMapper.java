@@ -4,6 +4,7 @@ import com.itmy.pojo.dto.UserLoginDto;
 import com.itmy.pojo.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 
 @Mapper
@@ -18,4 +19,8 @@ public interface UserMapper {
 
     //插入用户
     void insert(User user);
+
+    //根据id更新用户
+    @Update("update user set username=#{username},password=#{password} where id=#{id}")
+    void updateById(User user);
 }

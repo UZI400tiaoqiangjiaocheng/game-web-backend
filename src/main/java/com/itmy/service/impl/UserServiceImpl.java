@@ -1,9 +1,11 @@
 package com.itmy.service.impl;
 
+import com.itmy.mapper.GameWareHostMapper;
 import com.itmy.mapper.UserMapper;
 import com.itmy.pojo.dto.UserLoginDto;
 import com.itmy.pojo.vo.LoginRequest;
 import com.itmy.pojo.entity.User;
+import com.itmy.pojo.vo.UserVo;
 import com.itmy.service.UserService;
 import com.itmy.utils.JwtUtils;
 import com.sun.jdi.request.DuplicateRequestException;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -21,6 +24,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private GameWareHostMapper gameWareHostMapper;
 
     //用户登录
     @Override
@@ -57,5 +62,27 @@ public class UserServiceImpl implements UserService {
             throw new DuplicateRequestException("账号或密码已存在");
         }
         userMapper.insert(user);
+    }
+
+    //获取用户信息
+    @Override
+    public UserVo getUserInfo(Integer id) {
+        //根据id查询用户
+        User user = userMapper.selectById(id);
+        UserVo userVo = new UserVo();
+        BeanUtils.copyProperties(user,userVo);
+        //根据id查询用户游戏资产
+        List<Double> assets = gameWareHostMapper.queryAssets(id);
+        Double totalAssets = 0.0;
+        for (Double asset : assets) {
+            totalAssets += asset;
+        }
+        userVo.setTotalAssets(totalAssets);
+        return userVo;
+    }
+
+    @Override
+    public void update(User user) {
+        userMapper.updateById(user);
     }
 }
